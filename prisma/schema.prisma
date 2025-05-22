@@ -1,0 +1,22 @@
+ datasource db {
+   provider = "mysql"
+   url      = env("DATABASE_URL")
+ }
+
+ generator client {
+   provider = "prisma-client-js"
+ }
+
+ model Log {
+   id        String   @id
+   deviceId  String
+   userId    String
+   timestamp DateTime
+   type      Int
+   state     Int
+   ip        String
+   adjusted  Boolean  @default(false)
+   notes     String?
+
+  @@index([timestamp], map: "idx_timestamp")
+ }
